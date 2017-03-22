@@ -14,6 +14,7 @@
 		D5E922D51E83093000142C7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5E922D31E83093000142C7D /* LaunchScreen.storyboard */; };
 		D5E922E01E83093000142C7D /* ETAMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922DF1E83093000142C7D /* ETAMockTests.swift */; };
 		D5E922EB1E83093000142C7D /* ETAMockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922EA1E83093000142C7D /* ETAMockUITests.swift */; };
+		D5E922FB1E83115900142C7D /* BusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922FA1E83115900142C7D /* BusTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D5E922E61E83093000142C7D /* ETAMockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ETAMockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E922EA1E83093000142C7D /* ETAMockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMockUITests.swift; sourceTree = "<group>"; };
 		D5E922EC1E83093000142C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5E922FA1E83115900142C7D /* BusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				D5E922CA1E83093000142C7D /* AppDelegate.swift */,
 				D5E922CC1E83093000142C7D /* ViewController.swift */,
+				D5E922FA1E83115900142C7D /* BusTableViewController.swift */,
 				D5E922CE1E83093000142C7D /* Main.storyboard */,
 				D5E922D11E83093000142C7D /* Assets.xcassets */,
 				D5E922D31E83093000142C7D /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			files = (
 				D5E922CD1E83093000142C7D /* ViewController.swift in Sources */,
 				D5E922CB1E83093000142C7D /* AppDelegate.swift in Sources */,
+				D5E922FB1E83115900142C7D /* BusTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +509,7 @@
 				D5E922F11E83093000142C7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5E922F21E83093000142C7D /* Build configuration list for PBXNativeTarget "ETAMockTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +518,7 @@
 				D5E922F41E83093000142C7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5E922F51E83093000142C7D /* Build configuration list for PBXNativeTarget "ETAMockUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +527,7 @@
 				D5E922F71E83093000142C7D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
