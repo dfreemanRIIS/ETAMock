@@ -67,10 +67,10 @@
             </objects>
             <point key="canvasLocation" x="-87" y="53"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Route Table View Controller-->
         <scene sceneID="ApW-CM-dma">
             <objects>
-                <tableViewController id="k8U-ST-oaO" sceneMemberID="viewController">
+                <tableViewController id="k8U-ST-oaO" customClass="RouteTableViewController" customModule="ETAMock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cFE-Nx-we9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
