@@ -14,7 +14,13 @@ class RouteTableViewController: UITableViewController {
     var stringArray:[String] = []
 
     override func viewWillAppear(_ animated: Bool) {
-        setJSONStringArray()
+        //Get routes
+        let jsonFetcher = JSONfetcher()
+        let jsonParser = JSONParser()
+        jsonFetcher.getJSONStringArray { (data) in
+            self.stringArray = jsonParser.getParsedJSON(willBeParsedData: data!)
+            self.tableView.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -93,33 +99,4 @@ class RouteTableViewController: UITableViewController {
     }
     */
 
-    func setJSONStringArray() {
-        //Create URL
-        let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/1/routes"
-        guard let url = URL(string:urlString) else {
-            print("BROKE ON URL CREATION")
-            return
-        }
-
-        //Start URL Session
-        URLSession.shared.dataTask(with:url) { (data, response, error) in
-            if error != nil {
-                print(error ?? "URL ERROR")
-            } else {
-                do {
-                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
-
-                    for data in parsedData {
-                        self.stringArray.append(data["routeID"] as! String)
-                    }
-                    //print(self.stringArray)
-
-                    //Show data
-                    self.tableView.reloadData()
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }.resume()
-    }
 }
