@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qS1-DZ-ekJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2HD-rt-lDz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bus Table View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="3Wf-ph-fDQ">
+            <objects>
+                <navigationController id="2HD-rt-lDz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o6E-u9-Jzz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qS1-DZ-ekJ" kind="relationship" relationship="rootViewController" id="HwP-B0-gRc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNC-DI-lWu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-799" y="53"/>
+        </scene>
+        <!--Bus Companies-->
         <scene sceneID="c4i-oF-5Vd">
             <objects>
                 <tableViewController id="qS1-DZ-ekJ" customClass="BusTableViewController" customModule="ETAMock" customModuleProvider="target" sceneMemberID="viewController">
@@ -34,6 +50,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="k8U-ST-oaO" kind="show" id="T73-sA-iXP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -42,10 +61,39 @@
                             <outlet property="delegate" destination="qS1-DZ-ekJ" id="uxq-MH-weB"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Bus Companies" id="Ogi-To-Xiz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vts-tB-6nX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-87" y="53"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="ApW-CM-dma">
+            <objects>
+                <tableViewController id="k8U-ST-oaO" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cFE-Nx-we9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="uOk-cn-L1z">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uOk-cn-L1z" id="Atr-iS-bQs">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="k8U-ST-oaO" id="mSF-W8-GRg"/>
+                            <outlet property="delegate" destination="k8U-ST-oaO" id="og8-fW-5yp"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RrM-XF-prh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="623" y="53"/>
         </scene>
     </scenes>
 </document>
