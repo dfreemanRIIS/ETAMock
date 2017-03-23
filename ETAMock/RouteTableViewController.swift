@@ -11,7 +11,7 @@ import Foundation
 
 class RouteTableViewController: UITableViewController {
     
-    var stringArray = [String]()
+    var stringArray:[String] = []
 
     override func viewWillAppear(_ animated: Bool) {
         setJSONStringArray()
