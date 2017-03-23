@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		556F7559FAD4C9CF59102755 /* Pods_ETAMockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0357267AC85A18339E54BA2F /* Pods_ETAMockTests.framework */; };
-		74BA11CF1E84364500F5FE03 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BA11CE1E84364500F5FE03 /* GeneratedMocks.swift */; };
+		74BA11D31E8457AF00F5FE03 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BA11D21E8457AF00F5FE03 /* GeneratedMocks.swift */; };
 		8C921280860CD4FAFB69AFBD /* Pods_ETAMockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */; };
 		A4A96A1E1C684D5F4A4DFC60 /* Pods_ETAMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */; };
 		D53501F71E844AAF00E212DD /* JSONfetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53501F61E844AAF00E212DD /* JSONfetcher.swift */; };
@@ -47,7 +47,7 @@
 		237BF44B0CF0299B50DA30DC /* Pods-ETAMockUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockUITests/Pods-ETAMockUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A9CEDF48D0966E16F29429D /* Pods-ETAMock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMock.release.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMock/Pods-ETAMock.release.xcconfig"; sourceTree = "<group>"; };
 		3F079559D6B65F0ABE798D90 /* Pods-ETAMockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockTests/Pods-ETAMockTests.debug.xcconfig"; sourceTree = "<group>"; };
-		74BA11CE1E84364500F5FE03 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		74BA11D21E8457AF00F5FE03 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		7C86C16C308537817DF33C68 /* Pods-ETAMockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockTests/Pods-ETAMockTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +154,7 @@
 		D5E922DE1E83093000142C7D /* ETAMockTests */ = {
 			isa = PBXGroup;
 			children = (
-				74BA11CE1E84364500F5FE03 /* GeneratedMocks.swift */,
+				74BA11D21E8457AF00F5FE03 /* GeneratedMocks.swift */,
 				D5E922DF1E83093000142C7D /* ETAMockTests.swift */,
 				D5E922E11E83093000142C7D /* Info.plist */,
 			);
@@ -391,7 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Define output file; change \"${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name\nOUTPUT_FILE=\"./${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory; change \"${PROJECT_NAME}\" to your project's root source folder, if it's not the default name\nINPUT_DIR=\"./${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files; include as many input files as you'd like to create mocks for\n${PODS_ROOT}/Cuckoo/run generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/RouteTableViewController.swift\"\n\n# ... and so forth\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group";
+			shellScript = "# Define output file; change \"${PROJECT_NAME}Tests\" to your test's root source folder, if it's not the default name\nOUTPUT_FILE=\"./${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\n# Define input directory; change \"${PROJECT_NAME}\" to your project's root source folder, if it's not the default name\nINPUT_DIR=\"./${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files; include as many input files as you'd like to create mocks for\n${PODS_ROOT}/Cuckoo/run generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/JSONFetcher.swift\"\n\n# ... and so forth\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group";
 		};
 		7686A37DF59ED32B828AA884 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -489,7 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5E922E01E83093000142C7D /* ETAMockTests.swift in Sources */,
-				74BA11CF1E84364500F5FE03 /* GeneratedMocks.swift in Sources */,
+				74BA11D31E8457AF00F5FE03 /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

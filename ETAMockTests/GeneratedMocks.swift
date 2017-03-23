@@ -1,7 +1,7 @@
-// MARK: - Mocks generated from file: ETAMock/RouteTableViewController.swift at 2017-03-23 16:56:31 +0000
+// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-23 19:20:41 +0000
 
 //
-//  RouteTableViewController.swift
+//  JSONfetcher.swift
 //  ETAMock
 //
 //  Created by Donald Freeman on 3/23/17.
@@ -12,103 +12,51 @@ import Cuckoo
 @testable import ETAMock
 
 import Foundation
-import UIKit
 
-class MockRouteTableViewController: RouteTableViewController, Cuckoo.Mock {
-    typealias MocksType = RouteTableViewController
-    typealias Stubbing = __StubbingProxy_RouteTableViewController
-    typealias Verification = __VerificationProxy_RouteTableViewController
+class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
+    typealias MocksType = JSONfetcher
+    typealias Stubbing = __StubbingProxy_JSONfetcher
+    typealias Verification = __VerificationProxy_JSONfetcher
     let manager = Cuckoo.MockManager()
     
-    private var observed: RouteTableViewController?
+    private var observed: JSONfetcher?
     
-    func spy(on victim: RouteTableViewController) -> Self {
+    func spy(on victim: JSONfetcher) -> Self {
         observed = victim
         return self
     }
     
-    override var stringArray: [String] {
+    override var willBeParsedData: [[String:Any]] {
         get {
-            return manager.getter("stringArray", original: observed.map { o in return { () -> [String] in o.stringArray } })
+            return manager.getter("willBeParsedData", original: observed.map { o in return { () -> [[String:Any]] in o.willBeParsedData } })
         }
         set {
-            manager.setter("stringArray", value: newValue, original: observed != nil ? { self.observed?.stringArray = $0 } : nil)
+            manager.setter("willBeParsedData", value: newValue, original: observed != nil ? { self.observed?.willBeParsedData = $0 } : nil)
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        return manager.call("viewWillAppear(_: Bool)", parameters: (animated), original: observed.map { o in return { (animated: Bool) in o.viewWillAppear(animated) } })
+    override func getJSONStringArray(completion: @escaping ([[String:Any]]?) -> Void) {
+        return manager.call("getJSONStringArray(completion: @escaping ([[String:Any]]?) -> Void)", parameters: (completion), original: observed.map { o in return { (completion: @escaping ([[String:Any]]?) -> Void) in o.getJSONStringArray(completion: completion) } })
     }
     
-    override func viewDidLoad() {
-        return manager.call("viewDidLoad()", parameters: (), original: observed.map { o in return { () in o.viewDidLoad() } })
-    }
-    
-    override func didReceiveMemoryWarning() {
-        return manager.call("didReceiveMemoryWarning()", parameters: (), original: observed.map { o in return { () in o.didReceiveMemoryWarning() } })
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return manager.call("numberOfSections(in: UITableView) -> Int", parameters: (tableView), original: observed.map { o in return { (tableView: UITableView) -> Int in o.numberOfSections(in: tableView) } })
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return manager.call("tableView(_: UITableView, numberOfRowsInSection: Int) -> Int", parameters: (tableView, section), original: observed.map { o in return { (tableView: UITableView, section: Int) -> Int in o.tableView(tableView, numberOfRowsInSection: section) } })
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return manager.call("tableView(_: UITableView, cellForRowAt: IndexPath) -> UITableViewCell", parameters: (tableView, indexPath), original: observed.map { o in return { (tableView: UITableView, indexPath: IndexPath) -> UITableViewCell in o.tableView(tableView, cellForRowAt: indexPath) } })
-    }
-    
-    override func setJSONStringArray() {
-        return manager.call("setJSONStringArray()", parameters: (), original: observed.map { o in return { () in o.setJSONStringArray() } })
-    }
-    
-    struct __StubbingProxy_RouteTableViewController: Cuckoo.StubbingProxy {
+    struct __StubbingProxy_JSONfetcher: Cuckoo.StubbingProxy {
         private let manager: Cuckoo.MockManager
         
         init(manager: Cuckoo.MockManager) {
             self.manager = manager
         }
         
-        var stringArray: Cuckoo.ToBeStubbedProperty<[String]> {
-            return Cuckoo.ToBeStubbedProperty(manager: manager, name: "stringArray")
+        var willBeParsedData: Cuckoo.ToBeStubbedProperty<[[String:Any]]> {
+            return Cuckoo.ToBeStubbedProperty(manager: manager, name: "willBeParsedData")
         }
         
-        func viewWillAppear<M1: Cuckoo.Matchable>(_ animated: M1) -> Cuckoo.StubNoReturnFunction<(Bool)> where M1.MatchedType == Bool {
-            let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("viewWillAppear(_: Bool)", parameterMatchers: matchers))
-        }
-        
-        func viewDidLoad() -> Cuckoo.StubNoReturnFunction<()> {
-            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("viewDidLoad()", parameterMatchers: []))
-        }
-        
-        func didReceiveMemoryWarning() -> Cuckoo.StubNoReturnFunction<()> {
-            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("didReceiveMemoryWarning()", parameterMatchers: []))
-        }
-        
-        func numberOfSections<M1: Cuckoo.Matchable>(in tableView: M1) -> Cuckoo.StubFunction<(UITableView), Int> where M1.MatchedType == UITableView {
-            let matchers: [Cuckoo.ParameterMatcher<(UITableView)>] = [wrap(matchable: tableView) { $0 }]
-            return Cuckoo.StubFunction(stub: manager.createStub("numberOfSections(in: UITableView) -> Int", parameterMatchers: matchers))
-        }
-        
-        func tableView<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ tableView: M1, numberOfRowsInSection section: M2) -> Cuckoo.StubFunction<(UITableView, Int), Int> where M1.MatchedType == UITableView, M2.MatchedType == Int {
-            let matchers: [Cuckoo.ParameterMatcher<(UITableView, Int)>] = [wrap(matchable: tableView) { $0.0 }, wrap(matchable: section) { $0.1 }]
-            return Cuckoo.StubFunction(stub: manager.createStub("tableView(_: UITableView, numberOfRowsInSection: Int) -> Int", parameterMatchers: matchers))
-        }
-        
-        func tableView<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ tableView: M1, cellForRowAt indexPath: M2) -> Cuckoo.StubFunction<(UITableView, IndexPath), UITableViewCell> where M1.MatchedType == UITableView, M2.MatchedType == IndexPath {
-            let matchers: [Cuckoo.ParameterMatcher<(UITableView, IndexPath)>] = [wrap(matchable: tableView) { $0.0 }, wrap(matchable: indexPath) { $0.1 }]
-            return Cuckoo.StubFunction(stub: manager.createStub("tableView(_: UITableView, cellForRowAt: IndexPath) -> UITableViewCell", parameterMatchers: matchers))
-        }
-        
-        func setJSONStringArray() -> Cuckoo.StubNoReturnFunction<()> {
-            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("setJSONStringArray()", parameterMatchers: []))
+        func getJSONStringArray<M1: Cuckoo.Matchable>(completion: M1) -> Cuckoo.StubNoReturnFunction<(([[String:Any]]?) -> Void)> where M1.MatchedType == ([[String:Any]]?) -> Void {
+            let matchers: [Cuckoo.ParameterMatcher<(([[String:Any]]?) -> Void)>] = [wrap(matchable: completion) { $0 }]
+            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("getJSONStringArray(completion: @escaping ([[String:Any]]?) -> Void)", parameterMatchers: matchers))
         }
     }
     
-    struct __VerificationProxy_RouteTableViewController: Cuckoo.VerificationProxy {
+    struct __VerificationProxy_JSONfetcher: Cuckoo.VerificationProxy {
         private let manager: Cuckoo.MockManager
         private let callMatcher: Cuckoo.CallMatcher
         private let sourceLocation: Cuckoo.SourceLocation
@@ -119,86 +67,29 @@ class MockRouteTableViewController: RouteTableViewController, Cuckoo.Mock {
             self.sourceLocation = sourceLocation
         }
         
-        var stringArray: Cuckoo.VerifyProperty<[String]> {
-            return Cuckoo.VerifyProperty(manager: manager, name: "stringArray", callMatcher: callMatcher, sourceLocation: sourceLocation)
+        var willBeParsedData: Cuckoo.VerifyProperty<[[String:Any]]> {
+            return Cuckoo.VerifyProperty(manager: manager, name: "willBeParsedData", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
         
         @discardableResult
-        func viewWillAppear<M1: Cuckoo.Matchable>(_ animated: M1) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == Bool {
-            let matchers: [Cuckoo.ParameterMatcher<(Bool)>] = [wrap(matchable: animated) { $0 }]
-            return manager.verify("viewWillAppear(_: Bool)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-        }
-        
-        @discardableResult
-        func viewDidLoad() -> Cuckoo.__DoNotUse<Void> {
-            return manager.verify("viewDidLoad()", callMatcher: callMatcher, parameterMatchers: [] as [Cuckoo.ParameterMatcher<Void>], sourceLocation: sourceLocation)
-        }
-        
-        @discardableResult
-        func didReceiveMemoryWarning() -> Cuckoo.__DoNotUse<Void> {
-            return manager.verify("didReceiveMemoryWarning()", callMatcher: callMatcher, parameterMatchers: [] as [Cuckoo.ParameterMatcher<Void>], sourceLocation: sourceLocation)
-        }
-        
-        @discardableResult
-        func numberOfSections<M1: Cuckoo.Matchable>(in tableView: M1) -> Cuckoo.__DoNotUse<Int> where M1.MatchedType == UITableView {
-            let matchers: [Cuckoo.ParameterMatcher<(UITableView)>] = [wrap(matchable: tableView) { $0 }]
-            return manager.verify("numberOfSections(in: UITableView) -> Int", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-        }
-        
-        @discardableResult
-        func tableView<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ tableView: M1, numberOfRowsInSection section: M2) -> Cuckoo.__DoNotUse<Int> where M1.MatchedType == UITableView, M2.MatchedType == Int {
-            let matchers: [Cuckoo.ParameterMatcher<(UITableView, Int)>] = [wrap(matchable: tableView) { $0.0 }, wrap(matchable: section) { $0.1 }]
-            return manager.verify("tableView(_: UITableView, numberOfRowsInSection: Int) -> Int", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-        }
-        
-        @discardableResult
-        func tableView<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(_ tableView: M1, cellForRowAt indexPath: M2) -> Cuckoo.__DoNotUse<UITableViewCell> where M1.MatchedType == UITableView, M2.MatchedType == IndexPath {
-            let matchers: [Cuckoo.ParameterMatcher<(UITableView, IndexPath)>] = [wrap(matchable: tableView) { $0.0 }, wrap(matchable: indexPath) { $0.1 }]
-            return manager.verify("tableView(_: UITableView, cellForRowAt: IndexPath) -> UITableViewCell", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
-        }
-        
-        @discardableResult
-        func setJSONStringArray() -> Cuckoo.__DoNotUse<Void> {
-            return manager.verify("setJSONStringArray()", callMatcher: callMatcher, parameterMatchers: [] as [Cuckoo.ParameterMatcher<Void>], sourceLocation: sourceLocation)
+        func getJSONStringArray<M1: Cuckoo.Matchable>(completion: M1) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == ([[String:Any]]?) -> Void {
+            let matchers: [Cuckoo.ParameterMatcher<(([[String:Any]]?) -> Void)>] = [wrap(matchable: completion) { $0 }]
+            return manager.verify("getJSONStringArray(completion: @escaping ([[String:Any]]?) -> Void)", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
     }
 }
 
-class RouteTableViewControllerStub: RouteTableViewController {
+class JSONfetcherStub: JSONfetcher {
     
-    override var stringArray: [String] {
+    override var willBeParsedData: [[String:Any]] {
         get {
-            return DefaultValueRegistry.defaultValue(for: ([String]).self)
+            return DefaultValueRegistry.defaultValue(for: ([[String:Any]]).self)
         }
         set {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
-    }
-    
-    override func viewDidLoad() {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        return DefaultValueRegistry.defaultValue(for: (Void).self)
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return DefaultValueRegistry.defaultValue(for: (Int).self)
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DefaultValueRegistry.defaultValue(for: (Int).self)
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return DefaultValueRegistry.defaultValue(for: (UITableViewCell).self)
-    }
-    
-    override func setJSONStringArray() {
+    override func getJSONStringArray(completion: @escaping ([[String:Any]]?) -> Void) {
         return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
 }
