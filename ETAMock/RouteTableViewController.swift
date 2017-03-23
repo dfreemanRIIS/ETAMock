@@ -13,35 +13,13 @@ class RouteTableViewController: UITableViewController {
     
     var stringArray = [String]()
 
+    override func viewWillAppear(_ animated: Bool) {
+        setJSONStringArray()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //Create URL
-        let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/1/routes"
-        guard let url = URL(string:urlString) else {
-            print("BROKE ON URL CREATION")
-            return
-        }
-                
-        //Start URL Session
-        URLSession.shared.dataTask(with:url) { (data, response, error) in
-            if error != nil {
-                print(error ?? "poop")
-            } else {
-                do {
-                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
-                    
-                    for data in parsedData {
-                        self.stringArray.append(data["routeID"] as! String)
-                    }
-                    
-                    print(self.stringArray)
-                    
-                } catch let error as NSError {
-                    print(error)
-                }
-            }
-        }.resume()
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,23 +31,22 @@ class RouteTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.stringArray.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for: indexPath)
 
         // Configure the cell...
+        cell.textLabel?.text = self.stringArray[indexPath.row]
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -116,4 +93,33 @@ class RouteTableViewController: UITableViewController {
     }
     */
 
+    func setJSONStringArray() {
+        //Create URL
+        let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/1/routes"
+        guard let url = URL(string:urlString) else {
+            print("BROKE ON URL CREATION")
+            return
+        }
+
+        //Start URL Session
+        URLSession.shared.dataTask(with:url) { (data, response, error) in
+            if error != nil {
+                print(error ?? "URL ERROR")
+            } else {
+                do {
+                    let parsedData = try JSONSerialization.jsonObject(with: data!, options: []) as! [[String:Any]]
+
+                    for data in parsedData {
+                        self.stringArray.append(data["routeID"] as! String)
+                    }
+                    //print(self.stringArray)
+
+                    //Show data
+                    self.tableView.reloadData()
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+        }.resume()
+    }
 }
