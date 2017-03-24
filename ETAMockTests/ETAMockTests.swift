@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Cuckoo
 @testable import ETAMock
 
 class ETAMockTests: XCTestCase {
@@ -22,8 +23,20 @@ class ETAMockTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let mock = MockJSONfetcher()
+        
+        var bla :[[String:Any]] = []
+        bla.append(["test": 125])
+        
+        stub(mock){ (mock) in
+            when(mock.willBeParsedData).get.thenReturn([["routeName": "FORT ST-EUREKA RD", "daysActive": "Weekday,Saturday,Sunday", "direction1": "Northbound", "id": 1, "companyID": 1, "routeID": 125, "direction2": "Southbound"]])
+        }
+        
+        print(mock.willBeParsedData)
+        print(bla)
+        
+        XCTAssertEqual(mock.willBeParsedData as? String, bla as? String)
     }
     
     func testPerformanceExample() {
