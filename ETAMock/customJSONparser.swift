@@ -52,16 +52,16 @@ class customJSONparser {
             indexes.append(range.lowerBound)
         }
 
-        var stopIds = [String]()
+        var stopNames = [String]()
 
         //get stopNames from jsonString
         for thisIndex in indexes {
             let start = jsonString.index(thisIndex, offsetBy: 11)
             let end = jsonString.index(start, offsetBy: 11)
             let range = start..<end
-            stopIds.append(jsonString.substring(with: range))
+            stopNames.append(jsonString.substring(with: range))
         }
 
-        return stopIds
+        return stopNames
     }
 }
