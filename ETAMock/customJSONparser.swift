@@ -36,4 +36,32 @@ class customJSONparser {
 
         return routeIds
     }
+
+    func getDirectionOneStops(_ jsonString:String) -> [String] {
+        //Make sure the input isnt null
+        if jsonString.characters.count == 0 {
+            return []
+        }
+
+        //Get indexes of stopNames
+        let query = "stopName"
+        var searchRange = jsonString.startIndex..<jsonString.endIndex
+        var indexes: [String.Index] = []
+        while let range = jsonString.range(of: query, options: .caseInsensitive, range: searchRange) {
+            searchRange = range.upperBound..<searchRange.upperBound
+            indexes.append(range.lowerBound)
+        }
+
+        var stopIds = [String]()
+
+        //get stopNames from jsonString
+        for thisIndex in indexes {
+            let start = jsonString.index(thisIndex, offsetBy: 11)
+            let end = jsonString.index(start, offsetBy: 11)
+            let range = start..<end
+            stopIds.append(jsonString.substring(with: range))
+        }
+
+        return stopIds
+    }
 }
