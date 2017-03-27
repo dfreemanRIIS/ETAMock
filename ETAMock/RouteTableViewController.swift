@@ -11,7 +11,7 @@ import Foundation
 
 class RouteTableViewController: UITableViewController {
     
-    var stringArray:[String] = []
+    var routeIds:[String] = []
     let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/1/routes"
 
     override func viewWillAppear(_ animated: Bool) {
@@ -22,7 +22,7 @@ class RouteTableViewController: UITableViewController {
         
         //Parse
         let parser = customJSONparser()
-        stringArray = parser.customParse(jsonString)
+        routeIds = parser.customParse(jsonString)
         
         //Reload
         self.tableView.reloadData()
@@ -47,14 +47,14 @@ class RouteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.stringArray.count
+        return self.routeIds.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = self.stringArray[indexPath.row]
+        cell.textLabel?.text = self.routeIds[indexPath.row]
 
         return cell
     }
