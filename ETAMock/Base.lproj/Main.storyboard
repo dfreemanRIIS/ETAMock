@@ -92,6 +92,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="jyh-NI-tKd" kind="show" id="etk-mA-Ve7"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -103,6 +106,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RrM-XF-prh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="623" y="53"/>
+        </scene>
+        <!--Stops View Controller-->
+        <scene sceneID="gu4-25-xiu">
+            <objects>
+                <viewController id="jyh-NI-tKd" customClass="StopsViewController" customModule="ETAMock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ow0-wg-LTT"/>
+                        <viewControllerLayoutGuide type="bottom" id="5md-6k-XFI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6ks-50-BnQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGB-Kh-WYp">
+                                <rect key="frame" x="111" y="97" width="153" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="direction1"/>
+                                    <segment title="direction2"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="jyh-NI-tKd" eventType="valueChanged" id="sga-gd-RSh"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5nS-nX-0pD">
+                                <rect key="frame" x="31" y="155" width="313" height="407"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="segmentedControl" destination="MGB-Kh-WYp" id="3P2-Oz-TFf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZi-hS-0bM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1373.5999999999999" y="52.623688155922046"/>
         </scene>
     </scenes>
 </document>
