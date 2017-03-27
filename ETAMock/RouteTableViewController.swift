@@ -12,15 +12,20 @@ import Foundation
 class RouteTableViewController: UITableViewController {
     
     var stringArray:[String] = []
+    let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/1/routes"
 
     override func viewWillAppear(_ animated: Bool) {
-        //Get routes
+        //Fetch
         let jsonFetcher = JSONfetcher()
-        let jsonParser = JSONParser()
-        jsonFetcher.getJSONStringArray { (data) in
-            self.stringArray = jsonParser.getParsedJSON(willBeParsedData: data!)
-            self.tableView.reloadData()
-        }
+        let  url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+        let jsonString = jsonFetcher.callApi(url: url)
+        
+        //Parse
+        let parser = customJSONparser()
+        stringArray = parser.customParse(jsonString)
+        
+        //Reload
+        self.tableView.reloadData()
     }
 
     override func viewDidLoad() {
