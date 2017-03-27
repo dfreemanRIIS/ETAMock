@@ -20,6 +20,7 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 .DS_Store
+ETAMock/Assets.xcassets/AppIcon.appiconset/Contents.json
 
 ## Obj-C/Swift specific
 *.hmap
