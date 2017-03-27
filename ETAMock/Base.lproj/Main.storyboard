@@ -93,7 +93,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="jyh-NI-tKd" kind="show" id="etk-mA-Ve7"/>
+                                    <segue destination="aq1-pG-XgD" kind="show" id="G9D-eg-Ma7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -107,44 +107,33 @@
             </objects>
             <point key="canvasLocation" x="623" y="53"/>
         </scene>
-        <!--Stops View Controller-->
-        <scene sceneID="gu4-25-xiu">
+        <!--Stops Table View Controller-->
+        <scene sceneID="OCD-Si-1pV">
             <objects>
-                <viewController id="jyh-NI-tKd" customClass="StopsViewController" customModule="ETAMock" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ow0-wg-LTT"/>
-                        <viewControllerLayoutGuide type="bottom" id="5md-6k-XFI"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6ks-50-BnQ">
+                <tableViewController id="aq1-pG-XgD" customClass="StopsTableViewController" customModule="ETAMock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hdp-0L-CJw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="MGB-Kh-WYp">
-                                <rect key="frame" x="111" y="97" width="153" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="direction1"/>
-                                    <segment title="direction2"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="jyh-NI-tKd" eventType="valueChanged" id="sga-gd-RSh"/>
-                                </connections>
-                            </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5nS-nX-0pD">
-                                <rect key="frame" x="31" y="155" width="313" height="407"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="segmentedControl" destination="MGB-Kh-WYp" id="3P2-Oz-TFf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZi-hS-0bM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="p4B-6a-0JL">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p4B-6a-0JL" id="0eW-lb-qKO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aq1-pG-XgD" id="qvH-Wg-59i"/>
+                            <outlet property="delegate" destination="aq1-pG-XgD" id="8hK-lv-UwH"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VPK-lP-5Hq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1373.5999999999999" y="52.623688155922046"/>
+            <point key="canvasLocation" x="1442" y="53"/>
         </scene>
     </scenes>
 </document>
