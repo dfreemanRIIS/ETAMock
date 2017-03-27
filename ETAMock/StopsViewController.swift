@@ -54,11 +54,32 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     @IBAction func directionButtonClick(_ sender: UISegmentedControl) {
+        //When the button is pressed reload the view
         switch segmentButton.selectedSegmentIndex {
         case 0:
-            print("northbound")
+            //Fetch
+            let jsonFetcher = JSONfetcher()
+            let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+            let jsonString = jsonFetcher.callApi(url: url)
+
+            //Parse
+            let parser = customJSONparser()
+            stopNames = parser.getDirectionOneStops(jsonString)
+
+            //Reload
+            self.tableView.reloadData()
         case 1:
-            print("southbound")
+            //Fetch
+            let jsonFetcher = JSONfetcher()
+            let url = jsonFetcher.getSourceUrl(apiUrl: urlStringSouth)
+            let jsonString = jsonFetcher.callApi(url: url)
+
+            //Parse
+            let parser = customJSONparser()
+            stopNames = parser.getDirectionOneStops(jsonString)
+
+            //Reload
+            self.tableView.reloadData()
         default:
             break
         }
