@@ -57,9 +57,21 @@ class customJSONparser {
         //get stopNames from jsonString
         for thisIndex in indexes {
             let start = jsonString.index(thisIndex, offsetBy: 11)
-            let end = jsonString.index(start, offsetBy: 11)
+            let end = jsonString.index(start, offsetBy: 40)
             let range = start..<end
-            stopNames.append(jsonString.substring(with: range))
+            var returnString = jsonString.substring(with: range)
+
+            //Make sure you didnt grab any trailing characters
+            var running = true
+            while running {
+                if returnString.range(of:"\"") != nil{
+                    returnString = returnString.substring(to: returnString.index(before: returnString.endIndex))
+                } else {
+                    running = false
+                }
+            }
+
+            stopNames.append(returnString)
         }
 
         return stopNames
