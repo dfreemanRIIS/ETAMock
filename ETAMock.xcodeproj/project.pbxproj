@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		556F7559FAD4C9CF59102755 /* Pods_ETAMockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0357267AC85A18339E54BA2F /* Pods_ETAMockTests.framework */; };
 		74BA11D51E8954F200F5FE03 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BA11D41E8954F200F5FE03 /* GeneratedMocks.swift */; };
-		74BA11DB1E89887300F5FE03 /* StopsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BA11DA1E89887300F5FE03 /* StopsTableViewController.swift */; };
+		74BA11E11E89A15F00F5FE03 /* StopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BA11E01E89A15F00F5FE03 /* StopsViewController.swift */; };
 		8C921280860CD4FAFB69AFBD /* Pods_ETAMockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */; };
 		A4A96A1E1C684D5F4A4DFC60 /* Pods_ETAMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */; };
 		D53501F71E844AAF00E212DD /* JSONfetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53501F61E844AAF00E212DD /* JSONfetcher.swift */; };
@@ -49,7 +49,7 @@
 		2A9CEDF48D0966E16F29429D /* Pods-ETAMock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMock.release.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMock/Pods-ETAMock.release.xcconfig"; sourceTree = "<group>"; };
 		3F079559D6B65F0ABE798D90 /* Pods-ETAMockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockTests/Pods-ETAMockTests.debug.xcconfig"; sourceTree = "<group>"; };
 		74BA11D41E8954F200F5FE03 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
-		74BA11DA1E89887300F5FE03 /* StopsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopsTableViewController.swift; sourceTree = "<group>"; };
+		74BA11E01E89A15F00F5FE03 /* StopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopsViewController.swift; sourceTree = "<group>"; };
 		7C86C16C308537817DF33C68 /* Pods-ETAMockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockTests/Pods-ETAMockTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +143,7 @@
 				D5E922CC1E83093000142C7D /* ViewController.swift */,
 				D5E922FA1E83115900142C7D /* BusTableViewController.swift */,
 				D5EB1B321E8405E90064566B /* RouteTableViewController.swift */,
-				74BA11DA1E89887300F5FE03 /* StopsTableViewController.swift */,
+				74BA11E01E89A15F00F5FE03 /* StopsViewController.swift */,
 				D53501F61E844AAF00E212DD /* JSONfetcher.swift */,
 				D53501FA1E89408D00E212DD /* customJSONparser.swift */,
 				D5E922CE1E83093000142C7D /* Main.storyboard */,
@@ -482,7 +482,7 @@
 				D53501F71E844AAF00E212DD /* JSONfetcher.swift in Sources */,
 				D53501FB1E89408D00E212DD /* customJSONparser.swift in Sources */,
 				D5E922CB1E83093000142C7D /* AppDelegate.swift in Sources */,
-				74BA11DB1E89887300F5FE03 /* StopsTableViewController.swift in Sources */,
+				74BA11E11E89A15F00F5FE03 /* StopsViewController.swift in Sources */,
 				D5E922FB1E83115900142C7D /* BusTableViewController.swift in Sources */,
 				D5EB1B331E8405E90064566B /* RouteTableViewController.swift in Sources */,
 			);
