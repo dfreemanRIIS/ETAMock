@@ -11,6 +11,7 @@ import UIKit
 class StopsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var segmentButton: UISegmentedControl!
     var stopNames:[String] = []
     let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/3/routes/87/northbound/weekday/1/stops"
     
