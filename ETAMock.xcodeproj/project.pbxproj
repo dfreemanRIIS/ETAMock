@@ -12,7 +12,7 @@
 		8C921280860CD4FAFB69AFBD /* Pods_ETAMockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */; };
 		A4A96A1E1C684D5F4A4DFC60 /* Pods_ETAMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */; };
 		D53501F71E844AAF00E212DD /* JSONfetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53501F61E844AAF00E212DD /* JSONfetcher.swift */; };
-		D53501F91E844ABD00E212DD /* JSONparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53501F81E844ABD00E212DD /* JSONparser.swift */; };
+		D53501FB1E89408D00E212DD /* customJSONparser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53501FA1E89408D00E212DD /* customJSONparser.swift */; };
 		D5E922CB1E83093000142C7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922CA1E83093000142C7D /* AppDelegate.swift */; };
 		D5E922CD1E83093000142C7D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922CC1E83093000142C7D /* ViewController.swift */; };
 		D5E922D01E83093000142C7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5E922CE1E83093000142C7D /* Main.storyboard */; };
@@ -53,7 +53,7 @@
 		C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C678D196CF0DC142015A430E /* Pods-ETAMockUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockUITests/Pods-ETAMockUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D53501F61E844AAF00E212DD /* JSONfetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONfetcher.swift; sourceTree = "<group>"; };
-		D53501F81E844ABD00E212DD /* JSONparser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONparser.swift; sourceTree = "<group>"; };
+		D53501FA1E89408D00E212DD /* customJSONparser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customJSONparser.swift; sourceTree = "<group>"; };
 		D5E922C71E83093000142C7D /* ETAMock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ETAMock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5E922CA1E83093000142C7D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5E922CC1E83093000142C7D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 				D5E922FA1E83115900142C7D /* BusTableViewController.swift */,
 				D5EB1B321E8405E90064566B /* RouteTableViewController.swift */,
 				D53501F61E844AAF00E212DD /* JSONfetcher.swift */,
-				D53501F81E844ABD00E212DD /* JSONparser.swift */,
+				D53501FA1E89408D00E212DD /* customJSONparser.swift */,
 				D5E922CE1E83093000142C7D /* Main.storyboard */,
 				D5E922D11E83093000142C7D /* Assets.xcassets */,
 				D5E922D31E83093000142C7D /* LaunchScreen.storyboard */,
@@ -477,7 +477,7 @@
 			files = (
 				D5E922CD1E83093000142C7D /* ViewController.swift in Sources */,
 				D53501F71E844AAF00E212DD /* JSONfetcher.swift in Sources */,
-				D53501F91E844ABD00E212DD /* JSONparser.swift in Sources */,
+				D53501FB1E89408D00E212DD /* customJSONparser.swift in Sources */,
 				D5E922CB1E83093000142C7D /* AppDelegate.swift in Sources */,
 				D5E922FB1E83115900142C7D /* BusTableViewController.swift in Sources */,
 				D5EB1B331E8405E90064566B /* RouteTableViewController.swift in Sources */,
