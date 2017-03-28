@@ -9,30 +9,57 @@
 import UIKit
 
 class StopsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentButton: UISegmentedControl!
+
     var companyIndex:Int!
     var id:String!
     var direction:String!
-    
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var segmentButton: UISegmentedControl!
     var stopNames:[String] = []
     var urlString:String = ""
     let urlStringSouth:String = ""
     
     override func viewWillAppear(_ animated: Bool) {
-        //Fetch
-        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
-        let jsonFetcher = JSONfetcher()
-        let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-        let jsonString = jsonFetcher.callApi(url: url)
+        setRoutes(condition: "normal")
+    }
 
-        //Parse
-        let parser = customJSONparser(companyIndex: companyIndex)
-        stopNames = parser.getDirectionOneStops(jsonString)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
-        //For Eastbound and Westbound routes
-        if stopNames.isEmpty == true {
-            direction = "eastbound"
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return self.stopNames.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stopsCell", for: indexPath)
+
+        // Configure the cell...
+        cell.textLabel?.text = self.stopNames[indexPath.row]
+
+        return cell
+    }
+
+    @IBAction func directionButtonClick(_ sender: UISegmentedControl) {
+        //When the button is pressed reload the view
+        switch segmentButton.selectedSegmentIndex {
+            case 0:
+                setRoutes(condition: "button0")
+            case 1:
+                setRoutes(condition: "button1")
+            default:
+                break
+        }
+    }
+
+    func setRoutes(condition:String) {
+        if(condition == "normal") {
             //Fetch
             urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
             let jsonFetcher = JSONfetcher()
@@ -43,14 +70,11 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             let parser = customJSONparser(companyIndex: companyIndex)
             stopNames = parser.getDirectionOneStops(jsonString)
 
-            //Assign Button Names
-            segmentButton.setTitle("Eastbound", forSegmentAt: 0)
-            segmentButton.setTitle("Westbound", forSegmentAt: 1)
-
-            //For everyday Eastbound and Westbound
+            //For Eastbound and Westbound routes
             if stopNames.isEmpty == true {
+                direction = "eastbound"
                 //Fetch
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
+                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
                 let jsonFetcher = JSONfetcher()
                 let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
                 let jsonString = jsonFetcher.callApi(url: url)
@@ -59,9 +83,12 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let parser = customJSONparser(companyIndex: companyIndex)
                 stopNames = parser.getDirectionOneStops(jsonString)
 
-                //For everyday North and Southbound
+                //Assign Button Names
+                segmentButton.setTitle("Eastbound", forSegmentAt: 0)
+                segmentButton.setTitle("Westbound", forSegmentAt: 1)
+
+                //For everyday Eastbound and Westbound
                 if stopNames.isEmpty == true {
-                    direction = "northbound"
                     //Fetch
                     urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
                     let jsonFetcher = JSONfetcher()
@@ -72,44 +99,27 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                     let parser = customJSONparser(companyIndex: companyIndex)
                     stopNames = parser.getDirectionOneStops(jsonString)
 
-                    //Assign Button Names
-                    segmentButton.setTitle("Northbound", forSegmentAt: 0)
-                    segmentButton.setTitle("Southbound", forSegmentAt: 1)
+                    //For everyday North and Southbound
+                    if stopNames.isEmpty == true {
+                        direction = "northbound"
+                        //Fetch
+                        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
+                        let jsonFetcher = JSONfetcher()
+                        let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+                        let jsonString = jsonFetcher.callApi(url: url)
+
+                        //Parse
+                        let parser = customJSONparser(companyIndex: companyIndex)
+                        stopNames = parser.getDirectionOneStops(jsonString)
+
+                        //Assign Button Names
+                        segmentButton.setTitle("Northbound", forSegmentAt: 0)
+                        segmentButton.setTitle("Southbound", forSegmentAt: 1)
+                    }
                 }
             }
         }
-
-        //Reload
-        self.tableView.reloadData()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return self.stopNames.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stopsCell", for: indexPath)
-        
-        // Configure the cell...
-        cell.textLabel?.text = self.stopNames[indexPath.row]
-        
-        return cell
-    }
-
-    @IBAction func directionButtonClick(_ sender: UISegmentedControl) {
-        //When the button is pressed reload the view
-        switch segmentButton.selectedSegmentIndex {
-        case 0:
+        if(condition == "button0") {
             urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
 
             //Fetch
@@ -133,10 +143,8 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let parser = customJSONparser(companyIndex: companyIndex)
                 stopNames = parser.getDirectionOneStops(jsonString)
             }
-
-            //Reload
-            self.tableView.reloadData()
-        case 1:
+        }
+        if(condition == "button1") {
             if(direction == "northbound") {
                 urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/southbound/weekday/1/stops"
             }
@@ -181,11 +189,8 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let parser = customJSONparser(companyIndex: companyIndex)
                 stopNames = parser.getDirectionOneStops(jsonString)
             }
-
-            //Reload
-            self.tableView.reloadData()
-        default:
-            break
         }
+        //Reload
+        self.tableView.reloadData()
     }
 }
