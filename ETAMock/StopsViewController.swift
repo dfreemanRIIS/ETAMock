@@ -46,6 +46,37 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             //Assign Button Names
             segmentButton.setTitle("Eastbound", forSegmentAt: 0)
             segmentButton.setTitle("Westbound", forSegmentAt: 1)
+
+            //For everyday Eastbound and Westbound
+            if stopNames.isEmpty == true {
+                //Fetch
+                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
+                let jsonFetcher = JSONfetcher()
+                let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+                let jsonString = jsonFetcher.callApi(url: url)
+
+                //Parse
+                let parser = customJSONparser(companyIndex: companyIndex)
+                stopNames = parser.getDirectionOneStops(jsonString)
+
+                //For everyday North and Southbound
+                if stopNames.isEmpty == true {
+                    direction = "northbound"
+                    //Fetch
+                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
+                    let jsonFetcher = JSONfetcher()
+                    let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+                    let jsonString = jsonFetcher.callApi(url: url)
+
+                    //Parse
+                    let parser = customJSONparser(companyIndex: companyIndex)
+                    stopNames = parser.getDirectionOneStops(jsonString)
+
+                    //Assign Button Names
+                    segmentButton.setTitle("Northbound", forSegmentAt: 0)
+                    segmentButton.setTitle("Southbound", forSegmentAt: 1)
+                }
+            }
         }
 
         //Reload
@@ -90,6 +121,19 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             let parser = customJSONparser(companyIndex: companyIndex)
             stopNames = parser.getDirectionOneStops(jsonString)
 
+            //For everyday
+            if stopNames.isEmpty == true {
+                //Fetch
+                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
+                let jsonFetcher = JSONfetcher()
+                let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+                let jsonString = jsonFetcher.callApi(url: url)
+
+                //Parse
+                let parser = customJSONparser(companyIndex: companyIndex)
+                stopNames = parser.getDirectionOneStops(jsonString)
+            }
+
             //Reload
             self.tableView.reloadData()
         case 1:
@@ -113,6 +157,30 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             //Parse
             let parser = customJSONparser(companyIndex: companyIndex)
             stopNames = parser.getDirectionOneStops(jsonString)
+
+            //For everyday
+            if stopNames.isEmpty == true {
+                //Fetch
+                if(direction == "northbound") {
+                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/southbound/everyday/1/stops"
+                }
+                if(direction == "southbound") {
+                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/northbound/everyday/1/stops"
+                }
+                if(direction == "eastbound") {
+                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/westbound/everyday/1/stops"
+                }
+                if(direction == "westbound") {
+                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/eastbound/everyday/1/stops"
+                }
+                let jsonFetcher = JSONfetcher()
+                let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+                let jsonString = jsonFetcher.callApi(url: url)
+
+                //Parse
+                let parser = customJSONparser(companyIndex: companyIndex)
+                stopNames = parser.getDirectionOneStops(jsonString)
+            }
 
             //Reload
             self.tableView.reloadData()
