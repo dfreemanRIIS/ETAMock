@@ -12,10 +12,12 @@ import Foundation
 class RouteTableViewController: UITableViewController {
     
     var routeIds:[String] = []
-    let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/1/routes"
+    var companyIndex = -1
+    var urlString:String = ""
 
     override func viewWillAppear(_ animated: Bool) {
         //Fetch
+        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex)/routes"
         let jsonFetcher = JSONfetcher()
         let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
         let jsonString = jsonFetcher.callApi(url: url)
