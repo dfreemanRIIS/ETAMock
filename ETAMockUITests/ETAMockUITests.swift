@@ -29,8 +29,12 @@ class ETAMockUITests: XCTestCase {
     }
     
     func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let tablesQuery = XCUIApplication().tables
+        tablesQuery.staticTexts["Smart"].tap()
+        tablesQuery.staticTexts["125"].tap()
+        XCTAssert(tablesQuery.staticTexts["METRO AIRPORT MCNAMARA TERMINAL"].exists)
+        
     }
     
 }
