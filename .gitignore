@@ -38,7 +38,7 @@ Package.pins
 .build/
 
 # CocoaPods
-Pods/
+#Pods/
 
 # Carthage
 Carthage/Build
