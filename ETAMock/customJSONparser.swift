@@ -9,6 +9,13 @@
 import Foundation
 
 class customJSONparser {
+
+    var index = 0
+
+    init(companyIndex:Int) {
+        index = companyIndex
+    }
+
     func customParse(_ jsonString:String) -> [String] {
         //Make sure the input isnt null
         if jsonString.characters.count == 0 {
@@ -26,15 +33,44 @@ class customJSONparser {
 
         var routeIds = [String]()
 
-        //get routeIDs from jsonString
-        for thisIndex in indexes {
-            let start = jsonString.index(thisIndex, offsetBy: 10)
-            let end = jsonString.index(start, offsetBy: 3)
-            let range = start..<end
-            routeIds.append(jsonString.substring(with: range))
+        //Grab the string for each company
+        if(index == 1) {
+            //get routeIDs from jsonString
+            for thisIndex in indexes {
+                let start = jsonString.index(thisIndex, offsetBy: 10)
+                let end = jsonString.index(start, offsetBy: 3)
+                let range = start..<end
+                routeIds.append(jsonString.substring(with: range))
+            }
+            return routeIds
         }
-
-        return routeIds
+        if(index == 2) {
+            //get routeIDs from jsonString
+            for thisIndex in indexes {
+                let start = jsonString.index(thisIndex, offsetBy: 15)
+                let end = jsonString.index(start, offsetBy: 4)
+                let range = start..<end
+                routeIds.append(jsonString.substring(with: range))
+            }
+            return routeIds
+        }
+        if(index == 3) {
+            var temp = false
+            //get routeIDs from jsonString
+            for thisIndex in indexes {
+                var start = jsonString.index(thisIndex, offsetBy: 10)
+                var end = jsonString.index(start, offsetBy: 3)
+                if(temp == false) {
+                    start = jsonString.index(thisIndex, offsetBy: 15)
+                    end = jsonString.index(start, offsetBy: 4)
+                    temp = true
+                }
+                let range = start..<end
+                routeIds.append(jsonString.substring(with: range))
+            }
+            return routeIds
+        }
+        return []
     }
 
     func getDirectionOneStops(_ jsonString:String) -> [String] {
