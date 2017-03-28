@@ -23,7 +23,7 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         let jsonString = jsonFetcher.callApi(url: url)
         
         //Parse
-        let parser = customJSONparser()
+        let parser = customJSONparser(companyIndex: 1)
         stopNames = parser.getDirectionOneStops(jsonString)
         
         //Reload
@@ -63,7 +63,7 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             let jsonString = jsonFetcher.callApi(url: url)
 
             //Parse
-            let parser = customJSONparser()
+            let parser = customJSONparser(companyIndex: 1)
             stopNames = parser.getDirectionOneStops(jsonString)
 
             //Reload
@@ -75,7 +75,7 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             let jsonString = jsonFetcher.callApi(url: url)
 
             //Parse
-            let parser = customJSONparser()
+            let parser = customJSONparser(companyIndex: 1)
             stopNames = parser.getDirectionOneStops(jsonString)
 
             //Reload

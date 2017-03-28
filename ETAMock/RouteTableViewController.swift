@@ -23,7 +23,7 @@ class RouteTableViewController: UITableViewController {
         let jsonString = jsonFetcher.callApi(url: url)
         
         //Parse
-        let parser = customJSONparser()
+        let parser = customJSONparser(companyIndex:companyIndex)
         routeIds = parser.customParse(jsonString)
         
         //Reload
