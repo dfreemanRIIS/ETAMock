@@ -50,7 +50,7 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //When the button is pressed reload the view
         switch segmentButton.selectedSegmentIndex {
             case 0:
-                setRoutes(condition: "button0")
+                setRoutes(condition: "normal")
             case 1:
                 setRoutes(condition: "button1")
             default:
@@ -118,33 +118,7 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                     }
                 }
             }
-        }
-        if(condition == "button0") {
-            urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
-
-            //Fetch
-            let jsonFetcher = JSONfetcher()
-            let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-            let jsonString = jsonFetcher.callApi(url: url)
-
-            //Parse
-            let parser = customJSONparser(companyIndex: companyIndex)
-            stopNames = parser.getDirectionOneStops(jsonString)
-
-            //For everyday
-            if stopNames.isEmpty == true {
-                //Fetch
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
-                let jsonFetcher = JSONfetcher()
-                let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-                let jsonString = jsonFetcher.callApi(url: url)
-
-                //Parse
-                let parser = customJSONparser(companyIndex: companyIndex)
-                stopNames = parser.getDirectionOneStops(jsonString)
-            }
-        }
-        if(condition == "button1") {
+        } else if(condition == "button1") {
             if(direction == "northbound") {
                 urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/southbound/weekday/1/stops"
             }
@@ -189,6 +163,8 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 let parser = customJSONparser(companyIndex: companyIndex)
                 stopNames = parser.getDirectionOneStops(jsonString)
             }
+        } else {
+            print("ERROR")
         }
         //Reload
         self.tableView.reloadData()
