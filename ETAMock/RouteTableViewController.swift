@@ -12,6 +12,7 @@ import Foundation
 class RouteTableViewController: UITableViewController {
     
     var routeIds:[String] = []
+    var ids:[String] = []
     var companyIndex = -1
     var urlString:String = ""
 
@@ -25,6 +26,7 @@ class RouteTableViewController: UITableViewController {
         //Parse
         let parser = customJSONparser(companyIndex:companyIndex)
         routeIds = parser.customParse(jsonString)
+        ids = parser.getIds(jsonString)
         
         //Reload
         self.tableView.reloadData()
@@ -58,5 +60,16 @@ class RouteTableViewController: UITableViewController {
         cell.textLabel?.text = self.routeIds[indexPath.row]
 
         return cell
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showStopsSegue" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let controller = segue.destination as! StopsViewController
+                controller.companyIndex = self.companyIndex
+                controller.id = ids[indexPath.row]
+                controller.direction = "northbound"
+            }
+        }
     }
 }

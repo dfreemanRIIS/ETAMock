@@ -9,15 +9,19 @@
 import UIKit
 
 class StopsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var tableView: UITableView!
+    var companyIndex:Int!
+    var id:String!
+    var direction:String!
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentButton: UISegmentedControl!
     var stopNames:[String] = []
-    let urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/3/routes/87/northbound/weekday/1/stops"
-    let urlStringSouth = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/3/routes/87/southbound/weekday/1/stops"
+    var urlString:String = ""
+    let urlStringSouth:String = ""
     
     override func viewWillAppear(_ animated: Bool) {
         //Fetch
+        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
         let jsonFetcher = JSONfetcher()
         let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
         let jsonString = jsonFetcher.callApi(url: url)
