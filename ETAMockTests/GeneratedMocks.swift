@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-27 14:11:52 +0000
+// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-28 14:39:18 +0000
 
 //
 //  JSONfetcher.swift
