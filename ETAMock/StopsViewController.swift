@@ -25,11 +25,25 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         let jsonFetcher = JSONfetcher()
         let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
         let jsonString = jsonFetcher.callApi(url: url)
-        
+
         //Parse
         let parser = customJSONparser(companyIndex: companyIndex)
         stopNames = parser.getDirectionOneStops(jsonString)
-        
+
+        //For Eastbound and Westbound routes
+        if stopNames.isEmpty == true {
+            direction = "eastbound"
+            //Fetch
+            urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
+            let jsonFetcher = JSONfetcher()
+            let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+            let jsonString = jsonFetcher.callApi(url: url)
+
+            //Parse
+            let parser = customJSONparser(companyIndex: companyIndex)
+            stopNames = parser.getDirectionOneStops(jsonString)
+        }
+
         //Reload
         self.tableView.reloadData()
     }
