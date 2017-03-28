@@ -42,6 +42,10 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
             //Parse
             let parser = customJSONparser(companyIndex: companyIndex)
             stopNames = parser.getDirectionOneStops(jsonString)
+
+            //Assign Button Names
+            segmentButton.setTitle("Eastbound", forSegmentAt: 0)
+            segmentButton.setTitle("Westbound", forSegmentAt: 1)
         }
 
         //Reload
