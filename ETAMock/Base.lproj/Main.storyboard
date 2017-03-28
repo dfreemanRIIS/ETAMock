@@ -93,7 +93,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="iBl-qO-TYB" kind="show" id="3bx-XE-bTx"/>
+                                    <segue destination="iBl-qO-TYB" kind="show" identifier="showStopsSegue" id="3bx-XE-bTx"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

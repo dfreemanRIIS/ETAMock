@@ -112,4 +112,42 @@ class customJSONparser {
 
         return stopNames
     }
+
+    func getIds(_ jsonString:String) -> [String] {
+        //Make sure the input isnt null
+        if jsonString.characters.count == 0 {
+            return []
+        }
+
+        //Get indexes of stopNames
+        let query = ",\"id"
+        var searchRange = jsonString.startIndex..<jsonString.endIndex
+        var indexes: [String.Index] = []
+        while let range = jsonString.range(of: query, options: .caseInsensitive, range: searchRange) {
+            searchRange = range.upperBound..<searchRange.upperBound
+            indexes.append(range.lowerBound)
+        }
+
+        var ids = [String]()
+
+        //get stopNames from jsonString
+        for thisIndex in indexes {
+            let start = jsonString.index(thisIndex, offsetBy: 6)
+            let end = jsonString.index(start, offsetBy: 2)
+            let range = start..<end
+            var temp = jsonString.substring(with: range)
+
+            //Make sure you didnt grab any trailing characters
+            var running = true
+            while running {
+                if temp.range(of:"}") != nil{
+                    temp = temp.substring(to: temp.index(before: temp.endIndex))
+                } else {
+                    running = false
+                }
+            }
+            ids.append(temp)
+        }
+        return ids
+    }
 }
