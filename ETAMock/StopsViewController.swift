@@ -13,14 +13,16 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var segmentButton: UISegmentedControl!
 
     var companyIndex:Int!
-    var id:String!
-    var direction:String!
+    var route: Route!
+    var selectedDirection: String!
     var stopNames:[String] = []
     var urlString:String = ""
     let urlStringSouth:String = ""
     
     override func viewWillAppear(_ animated: Bool) {
-        setRoutes(condition: "normal")
+        segmentButton.setTitle(route.direction1, forSegmentAt: 0)
+        segmentButton.setTitle(route.direction2, forSegmentAt: 1)
+        selectDirection(direction: route.direction1)
     }
 
     override func viewDidLoad() {
@@ -50,123 +52,32 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         //When the button is pressed reload the view
         switch segmentButton.selectedSegmentIndex {
             case 0:
-                setRoutes(condition: "normal")
+                selectDirection(direction: route.direction1)
             case 1:
-                setRoutes(condition: "button1")
+                selectDirection(direction: route.direction2)
             default:
                 break
         }
     }
 
-    func setRoutes(condition:String) {
-        if(condition == "normal") {
-            //Fetch
-            urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
-            let jsonFetcher = JSONfetcher()
-            let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-            let jsonString = jsonFetcher.callApi(url: url)
-
-            //Parse
-            let parser = customJSONparser(companyIndex: companyIndex)
-            stopNames = parser.getDirectionOneStops(jsonString)
-
-            //For Eastbound and Westbound routes
-            if stopNames.isEmpty == true {
-                direction = "eastbound"
-                //Fetch
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/weekday/1/stops"
-                let jsonFetcher = JSONfetcher()
-                let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-                let jsonString = jsonFetcher.callApi(url: url)
-
-                //Parse
-                let parser = customJSONparser(companyIndex: companyIndex)
-                stopNames = parser.getDirectionOneStops(jsonString)
-
-                //Assign Button Names
-                segmentButton.setTitle("Eastbound", forSegmentAt: 0)
-                segmentButton.setTitle("Westbound", forSegmentAt: 1)
-
-                //For everyday Eastbound and Westbound
-                if stopNames.isEmpty == true {
-                    //Fetch
-                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
-                    let jsonFetcher = JSONfetcher()
-                    let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-                    let jsonString = jsonFetcher.callApi(url: url)
-
-                    //Parse
-                    let parser = customJSONparser(companyIndex: companyIndex)
-                    stopNames = parser.getDirectionOneStops(jsonString)
-
-                    //For everyday North and Southbound
-                    if stopNames.isEmpty == true {
-                        direction = "northbound"
-                        //Fetch
-                        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/\(direction!)/everyday/1/stops"
-                        let jsonFetcher = JSONfetcher()
-                        let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-                        let jsonString = jsonFetcher.callApi(url: url)
-
-                        //Parse
-                        let parser = customJSONparser(companyIndex: companyIndex)
-                        stopNames = parser.getDirectionOneStops(jsonString)
-
-                        //Assign Button Names
-                        segmentButton.setTitle("Northbound", forSegmentAt: 0)
-                        segmentButton.setTitle("Southbound", forSegmentAt: 1)
-                    }
-                }
-            }
-        } else if(condition == "button1") {
-            if(direction == "northbound") {
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/southbound/weekday/1/stops"
-            }
-            if(direction == "southbound") {
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/northbound/weekday/1/stops"
-            }
-            if(direction == "eastbound") {
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/westbound/weekday/1/stops"
-            }
-            if(direction == "westbound") {
-                urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/eastbound/weekday/1/stops"
-            }
-            //Fetch
-            let jsonFetcher = JSONfetcher()
-            let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-            let jsonString = jsonFetcher.callApi(url: url)
-
-            //Parse
-            let parser = customJSONparser(companyIndex: companyIndex)
-            stopNames = parser.getDirectionOneStops(jsonString)
-
-            //For everyday
-            if stopNames.isEmpty == true {
-                //Fetch
-                if(direction == "northbound") {
-                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/southbound/everyday/1/stops"
-                }
-                if(direction == "southbound") {
-                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/northbound/everyday/1/stops"
-                }
-                if(direction == "eastbound") {
-                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/westbound/everyday/1/stops"
-                }
-                if(direction == "westbound") {
-                    urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(id!)/eastbound/everyday/1/stops"
-                }
-                let jsonFetcher = JSONfetcher()
-                let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-                let jsonString = jsonFetcher.callApi(url: url)
-
-                //Parse
-                let parser = customJSONparser(companyIndex: companyIndex)
-                stopNames = parser.getDirectionOneStops(jsonString)
-            }
-        } else {
-            print("ERROR")
+    func configureWithRoute(route: Route) {
+        self.route = route
+    }
+    
+    func selectDirection(direction: String) {
+        selectedDirection = direction
+        
+        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(route.id)/\(direction)/weekday/1/stops"
+        let jsonFetcher = JSONfetcher()
+        let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+        
+        //Call the api asynchronously
+        jsonFetcher.callApi(url: url) { data in
+            
+            //Parse the data
+            let parser = customJSONparser(companyIndex: self.companyIndex)
+            self.stopNames = parser.getDirectionOneStops(data)
+            self.tableView.reloadData()
         }
-        //Reload
-        self.tableView.reloadData()
     }
 }

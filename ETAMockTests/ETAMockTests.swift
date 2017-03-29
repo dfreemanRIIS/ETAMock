@@ -12,10 +12,10 @@ import Cuckoo
 
 class ETAMockTests: XCTestCase {
     
-    var urlStr:String!
-    var url:URL!
-    var testRouteJson:String!
-    var testStopJson:String!
+    var urlStr: String!
+    var url: URL!
+    var testRouteJson: String!
+    var testStopJson: String!
 
     override func setUp() {
         super.setUp()
@@ -26,39 +26,51 @@ class ETAMockTests: XCTestCase {
     }
 
     func testParseRoutes() {
-        //Set up Mock
         let mock = MockJSONfetcher()
+        
         stub(mock) { mock in
-            mock.callApi(url: equal(to:url, equalWhen: { $0 == $1 })).thenReturn(testRouteJson)
+            when(mock.callApi(url: any(), completion: anyClosure())).then { url, closure in
+                closure(self.testRouteJson)
+            }
         }
-        XCTAssertEqual(mock.callApi(url: url),testRouteJson)
-
-        //Test parser
-        let parser = customJSONparser(companyIndex: 1)
-        XCTAssertEqual(parser.customParse(mock.callApi(url: url)), ["125"])
+        
+        mock.callApi(url: url) { data in
+            XCTAssertEqual(data, self.testRouteJson)
+            let parser = customJSONparser(companyIndex: 1)
+            let route = Route(name: "FORT ST-EUREKA RD", direction1: "Northbound", direction2: "Southbound", id: 1, routeId: "125")
+            XCTAssertEqual(parser.getRoutes(fromJSONString: data), [route])
+        }
     }
     
     func testParseStops() {
-        //Set up Mock
         let mock = MockJSONfetcher()
-        stub(mock) { mock in
-            mock.callApi(url: equal(to:url, equalWhen: { $0 == $1 })).thenReturn(testStopJson)
-        }
-        XCTAssertEqual(mock.callApi(url: url),testStopJson)
         
-        //Test parser
-        let parser = customJSONparser(companyIndex: 1)
-        XCTAssertEqual(parser.getDirectionOneStops(mock.callApi(url: url)), ["Gratiot + Grand Blvd", "Gratiot + St Antoine", "Broadway + Crocker"])
+        stub(mock) { mock in
+            when(mock.callApi(url: any(), completion: anyClosure())).then { url, closure in
+                closure(self.testStopJson)
+            }
+        }
+        
+        mock.callApi(url: url) { data in
+            XCTAssertEqual(data, self.testStopJson)
+            let parser = customJSONparser(companyIndex: 1)
+            XCTAssertEqual(parser.getDirectionOneStops(data), ["Gratiot + Grand Blvd", "Gratiot + St Antoine", "Broadway + Crocker"])
+        }
     }
     
     func testParseIds() {
         let mock = MockJSONfetcher()
-        stub(mock) { mock in
-            mock.callApi(url: equal(to:url, equalWhen: { $0 == $1 })).thenReturn(testRouteJson)
-        }
-        XCTAssertEqual(mock.callApi(url: url),testRouteJson)
         
-        //Test parser
-        let parser = customJSONparser(companyIndex: 1)
-        XCTAssertEqual(parser.getIds(mock.callApi(url: url)), ["1"])}
+        stub(mock) { mock in
+            when(mock.callApi(url: any(), completion: anyClosure())).then { url, closure in
+                closure(self.testRouteJson)
+            }
+        }
+        
+        mock.callApi(url: url) { data in
+            XCTAssertEqual(data, self.testRouteJson)
+            let parser = customJSONparser(companyIndex: 1)
+            XCTAssertEqual(parser.getIds(data), ["1"])
+        }
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class customJSONparser {
 
@@ -149,5 +150,35 @@ class customJSONparser {
             ids.append(temp)
         }
         return ids
+    }
+    
+    
+    /// Parses a json string for a list of route object
+    ///
+    /// - Parameter fromJSONString: the string to be parsed
+    /// - Returns: a list of route object
+    ///
+    /// This makes it easier for us to use the data in the controllers
+    func getRoutes(fromJSONString: String) -> [Route] {
+        
+        // Convert string to data, then data to json object
+        guard let dataFromString = fromJSONString.data(using: .utf8, allowLossyConversion: false),
+            let json = JSON(data: dataFromString).array else {
+            return []
+        }
+        
+        // Go over each route and add it to the array
+        var routes = [Route]()
+        for routeJSON in json {
+            let name = routeJSON["routeName"].stringValue
+            let direction1 = routeJSON["direction1"].stringValue
+            let direction2 = routeJSON["direction2"].stringValue
+            let id = routeJSON["id"].intValue
+            let routeId = routeJSON["routeID"].stringValue
+            let route = Route(name: name, direction1: direction1, direction2: direction2, id: id, routeId: routeId)
+            routes.append(route)
+        }
+        
+        return routes
     }
 }

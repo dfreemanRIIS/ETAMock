@@ -11,25 +11,28 @@ import Foundation
 
 class RouteTableViewController: UITableViewController {
     
-    var routeIds:[String] = []
-    var ids:[String] = []
+    var routes:[Route] = []
     var companyIndex = -1
     var urlString:String = ""
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         //Fetch
         urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex)/routes"
         let jsonFetcher = JSONfetcher()
         let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-        let jsonString = jsonFetcher.callApi(url: url)
         
-        //Parse
-        let parser = customJSONparser(companyIndex:companyIndex)
-        routeIds = parser.customParse(jsonString)
-        ids = parser.getIds(jsonString)
-        
-        //Reload
-        self.tableView.reloadData()
+        //Call the api asynchronously
+        jsonFetcher.callApi(url: url) { data in
+            
+            //Parse the data
+            let parser = customJSONparser(companyIndex: self.companyIndex)
+            self.routes = parser.getRoutes(fromJSONString: data)
+            
+            //Reload the tableview
+            self.tableView.reloadData()
+        }
     }
 
     override func viewDidLoad() {
@@ -50,14 +53,14 @@ class RouteTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.routeIds.count
+        return self.routes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "routeCell", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = self.routeIds[indexPath.row]
+        cell.textLabel?.text = self.routes[indexPath.row].name
 
         return cell
     }
@@ -67,8 +70,7 @@ class RouteTableViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! StopsViewController
                 controller.companyIndex = self.companyIndex
-                controller.id = ids[indexPath.row]
-                controller.direction = "northbound"
+                controller.configureWithRoute(route: routes[indexPath.row])
             }
         }
     }
