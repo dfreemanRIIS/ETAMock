@@ -15,8 +15,8 @@ class RouteTableViewController: UITableViewController {
     var companyIndex = -1
     var urlString:String = ""
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         //Fetch
         urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex)/routes"
@@ -33,10 +33,6 @@ class RouteTableViewController: UITableViewController {
             //Reload the tableview
             self.tableView.reloadData()
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
