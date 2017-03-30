@@ -6,7 +6,8 @@ target 'ETAMock' do
   use_frameworks!
 
   # Pods for ETAMock
-
+  pod 'SwiftyJSON'
+  
   target 'ETAMockTests' do
     inherit! :search_paths
     # Pods for testing

@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-27 14:11:52 +0000
+// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-28 23:39:22 +0000
 
 //
 //  JSONfetcher.swift
@@ -57,8 +57,8 @@ class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
         return manager.call("getSourceUrl(apiUrl: String) -> URL", parameters: (apiUrl), original: observed.map { o in return { (apiUrl: String) -> URL in o.getSourceUrl(apiUrl: apiUrl) } })
     }
     
-    override func callApi(url: URL) -> String {
-        return manager.call("callApi(url: URL) -> String", parameters: (url), original: observed.map { o in return { (url: URL) -> String in o.callApi(url: url) } })
+    override func callApi(url: URL, completion: @escaping (String) -> ()) {
+        return manager.call("callApi(url: URL, completion: @escaping (String) -> ())", parameters: (url, completion), original: observed.map { o in return { (url: URL, completion: @escaping (String) -> ()) in o.callApi(url: url, completion: completion) } })
     }
     
     struct __StubbingProxy_JSONfetcher: Cuckoo.StubbingProxy {
@@ -85,9 +85,9 @@ class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
             return Cuckoo.StubFunction(stub: manager.createStub("getSourceUrl(apiUrl: String) -> URL", parameterMatchers: matchers))
         }
         
-        func callApi<M1: Cuckoo.Matchable>(url: M1) -> Cuckoo.StubFunction<(URL), String> where M1.MatchedType == URL {
-            let matchers: [Cuckoo.ParameterMatcher<(URL)>] = [wrap(matchable: url) { $0 }]
-            return Cuckoo.StubFunction(stub: manager.createStub("callApi(url: URL) -> String", parameterMatchers: matchers))
+        func callApi<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(url: M1, completion: M2) -> Cuckoo.StubNoReturnFunction<(URL, (String) -> ())> where M1.MatchedType == URL, M2.MatchedType == (String) -> () {
+            let matchers: [Cuckoo.ParameterMatcher<(URL, (String) -> ())>] = [wrap(matchable: url) { $0.0 }, wrap(matchable: completion) { $0.1 }]
+            return Cuckoo.StubNoReturnFunction(stub: manager.createStub("callApi(url: URL, completion: @escaping (String) -> ())", parameterMatchers: matchers))
         }
     }
     
@@ -121,9 +121,9 @@ class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
         }
         
         @discardableResult
-        func callApi<M1: Cuckoo.Matchable>(url: M1) -> Cuckoo.__DoNotUse<String> where M1.MatchedType == URL {
-            let matchers: [Cuckoo.ParameterMatcher<(URL)>] = [wrap(matchable: url) { $0 }]
-            return manager.verify("callApi(url: URL) -> String", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
+        func callApi<M1: Cuckoo.Matchable, M2: Cuckoo.Matchable>(url: M1, completion: M2) -> Cuckoo.__DoNotUse<Void> where M1.MatchedType == URL, M2.MatchedType == (String) -> () {
+            let matchers: [Cuckoo.ParameterMatcher<(URL, (String) -> ())>] = [wrap(matchable: url) { $0.0 }, wrap(matchable: completion) { $0.1 }]
+            return manager.verify("callApi(url: URL, completion: @escaping (String) -> ())", callMatcher: callMatcher, parameterMatchers: matchers, sourceLocation: sourceLocation)
         }
     }
 }
@@ -158,7 +158,7 @@ class JSONfetcherStub: JSONfetcher {
         return DefaultValueRegistry.defaultValue(for: (URL).self)
     }
     
-    override func callApi(url: URL) -> String {
-        return DefaultValueRegistry.defaultValue(for: (String).self)
+    override func callApi(url: URL, completion: @escaping (String) -> ()) {
+        return DefaultValueRegistry.defaultValue(for: (Void).self)
     }
 }
