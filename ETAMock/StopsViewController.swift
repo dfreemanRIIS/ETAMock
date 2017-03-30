@@ -19,14 +19,11 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
     var urlString:String = ""
     let urlStringSouth:String = ""
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         segmentButton.setTitle(route.direction1, forSegmentAt: 0)
         segmentButton.setTitle(route.direction2, forSegmentAt: 1)
         selectDirection(direction: route.direction1)
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
