@@ -67,10 +67,32 @@ class StopsViewController: UIViewController, UITableViewDataSource, UITableViewD
         urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(route.id)/\(direction)/weekday/1/stops"
         let jsonFetcher = JSONfetcher()
         let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
-        
+
         //Call the api asynchronously
         jsonFetcher.callApi(url: url) { data in
+
+            //Parse the data
+            let parser = customJSONparser(companyIndex: self.companyIndex)
+            self.stopNames = parser.getDirectionOneStops(data)
+            self.tableView.reloadData()
             
+            //If weekday doesn't work do everyday
+            if(self.stopNames == []) {
+                self.everydaySelectDirection(direction: direction)
+            }
+        }
+    }
+
+    func everydaySelectDirection(direction: String) {
+        selectedDirection = direction
+
+        urlString = "http://ec2-204-236-211-33.compute-1.amazonaws.com:8080/companies/\(companyIndex!)/routes/\(route.id)/\(direction)/everyday/1/stops"
+        let jsonFetcher = JSONfetcher()
+        let url = jsonFetcher.getSourceUrl(apiUrl: urlString)
+
+        //Call the api asynchronously
+        jsonFetcher.callApi(url: url) { data in
+
             //Parse the data
             let parser = customJSONparser(companyIndex: self.companyIndex)
             self.stopNames = parser.getDirectionOneStops(data)
