@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-28 23:39:22 +0000
+// MARK: - Mocks generated from file: ETAMock/JSONFetcher.swift at 2017-03-31 15:26:29 +0000
 
 //
 //  JSONfetcher.swift
@@ -35,15 +35,6 @@ class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
         }
     }
     
-    override var session: URLSession? {
-        get {
-            return manager.getter("session", original: observed.map { o in return { () -> URLSession? in o.session } })
-        }
-        set {
-            manager.setter("session", value: newValue, original: observed != nil ? { self.observed?.session = $0 } : nil)
-        }
-    }
-    
     override var apiUrl: String? {
         get {
             return manager.getter("apiUrl", original: observed.map { o in return { () -> String? in o.apiUrl } })
@@ -70,10 +61,6 @@ class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
         
         var url: Cuckoo.ToBeStubbedProperty<URL?> {
             return Cuckoo.ToBeStubbedProperty(manager: manager, name: "url")
-        }
-        
-        var session: Cuckoo.ToBeStubbedProperty<URLSession?> {
-            return Cuckoo.ToBeStubbedProperty(manager: manager, name: "session")
         }
         
         var apiUrl: Cuckoo.ToBeStubbedProperty<String?> {
@@ -106,10 +93,6 @@ class MockJSONfetcher: JSONfetcher, Cuckoo.Mock {
             return Cuckoo.VerifyProperty(manager: manager, name: "url", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
         
-        var session: Cuckoo.VerifyProperty<URLSession?> {
-            return Cuckoo.VerifyProperty(manager: manager, name: "session", callMatcher: callMatcher, sourceLocation: sourceLocation)
-        }
-        
         var apiUrl: Cuckoo.VerifyProperty<String?> {
             return Cuckoo.VerifyProperty(manager: manager, name: "apiUrl", callMatcher: callMatcher, sourceLocation: sourceLocation)
         }
@@ -133,14 +116,6 @@ class JSONfetcherStub: JSONfetcher {
     override var url: URL? {
         get {
             return DefaultValueRegistry.defaultValue(for: (URL?).self)
-        }
-        set {
-        }
-    }
-    
-    override var session: URLSession? {
-        get {
-            return DefaultValueRegistry.defaultValue(for: (URLSession?).self)
         }
         set {
         }

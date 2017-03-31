@@ -10,7 +10,6 @@ import Foundation
 
 class JSONfetcher {
     var url:URL?
-    var session:URLSession?
     var apiUrl:String?
 
     func getSourceUrl(apiUrl:String) -> URL {
@@ -23,14 +22,15 @@ class JSONfetcher {
     /// - Parameter url:        A Url object we want data from
     /// - Parameter completion: A closure which is called with the data
     func callApi(url:URL, completion: @escaping (String) -> ()) {
-        session = URLSession(configuration: .default)
-        var outputdata:String = ""
-        let task = session?.dataTask(with: url as URL) { (data, _, _) -> Void in
-            if let data = data {
-                outputdata = String(data: data, encoding: String.Encoding.utf8)!
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, request, error) in
+            DispatchQueue.main.async(){
+                guard let data = data,
+                    let outputdata = String(data: data, encoding: String.Encoding.utf8) else {
+                    completion("")
+                    return
+                }
                 completion(outputdata)
             }
-        }
-        task?.resume()
+        }).resume()
     }
 }
