@@ -259,11 +259,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Donald Freeman";
 				TargetAttributes = {
 					D5E922C61E83093000142C7D = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 3YP4TRQZ6K;
 						ProvisioningStyle = Automatic;
 					};
 					D5E922DA1E83093000142C7D = {
@@ -641,7 +642,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00630C7F5217850B6861CC9C /* Pods-ETAMock.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3YP4TRQZ6K;
 				INFOPLIST_FILE = ETAMock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.riis.ETAMock;
@@ -654,7 +658,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2A9CEDF48D0966E16F29429D /* Pods-ETAMock.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3YP4TRQZ6K;
 				INFOPLIST_FILE = ETAMock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.riis.ETAMock;
