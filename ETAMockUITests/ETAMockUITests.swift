@@ -29,5 +29,12 @@ class ETAMockUITests: XCTestCase {
         tablesQuery.staticTexts["Smart"].tap()
         tablesQuery.staticTexts["SOUTHSHORE"].tap()
         app.buttons["Southbound"].tap()
+        XCTAssert(tablesQuery.staticTexts["JEFFERSON + SOUTHFIELD"].exists)
+        
+        
+        app.navigationBars["ETAMock.StopsView"].children(matching: .button).matching(identifier: "Back").element(boundBy: 0).tap()
+        tablesQuery.staticTexts["MICHIGAN AVENUE LOCAL"].tap()
+        app.buttons["Westbound"].tap()
+        XCTAssert(tablesQuery.staticTexts["MICHIGAN + CASS"].exists)
     }
 }
