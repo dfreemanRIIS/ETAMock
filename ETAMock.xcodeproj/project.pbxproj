@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		556F7559FAD4C9CF59102755 /* Pods_ETAMockTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0357267AC85A18339E54BA2F /* Pods_ETAMockTests.framework */; };
 		74BA11E11E89A15F00F5FE03 /* StopsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BA11E01E89A15F00F5FE03 /* StopsViewController.swift */; };
-		7CEF781F1E8AF2E700886A87 /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF781E1E8AF2E700886A87 /* GeneratedMocks.swift */; };
 		7CEF78211E8B27BC00886A87 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEF78201E8B27BC00886A87 /* Route.swift */; };
 		8C921280860CD4FAFB69AFBD /* Pods_ETAMockUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */; };
 		A4A96A1E1C684D5F4A4DFC60 /* Pods_ETAMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */; };
@@ -20,8 +19,6 @@
 		D5E922D01E83093000142C7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5E922CE1E83093000142C7D /* Main.storyboard */; };
 		D5E922D21E83093000142C7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5E922D11E83093000142C7D /* Assets.xcassets */; };
 		D5E922D51E83093000142C7D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5E922D31E83093000142C7D /* LaunchScreen.storyboard */; };
-		D5E922E01E83093000142C7D /* ETAMockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922DF1E83093000142C7D /* ETAMockTests.swift */; };
-		D5E922EB1E83093000142C7D /* ETAMockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922EA1E83093000142C7D /* ETAMockUITests.swift */; };
 		D5E922FB1E83115900142C7D /* BusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E922FA1E83115900142C7D /* BusTableViewController.swift */; };
 		D5EB1B331E8405E90064566B /* RouteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EB1B321E8405E90064566B /* RouteTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,7 +48,6 @@
 		3F079559D6B65F0ABE798D90 /* Pods-ETAMockTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockTests/Pods-ETAMockTests.debug.xcconfig"; sourceTree = "<group>"; };
 		74BA11E01E89A15F00F5FE03 /* StopsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopsViewController.swift; sourceTree = "<group>"; };
 		7C86C16C308537817DF33C68 /* Pods-ETAMockTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ETAMockTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ETAMockTests/Pods-ETAMockTests.release.xcconfig"; sourceTree = "<group>"; };
-		7CEF781E1E8AF2E700886A87 /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
 		7CEF78201E8B27BC00886A87 /* Route.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		9A40210CF01AFF674AD0D4A8 /* Pods_ETAMock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11F462FF713B12C00E43440 /* Pods_ETAMockUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ETAMockUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,11 +62,7 @@
 		D5E922D41E83093000142C7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5E922D61E83093000142C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5E922DB1E83093000142C7D /* ETAMockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ETAMockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5E922DF1E83093000142C7D /* ETAMockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMockTests.swift; sourceTree = "<group>"; };
-		D5E922E11E83093000142C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5E922E61E83093000142C7D /* ETAMockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ETAMockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5E922EA1E83093000142C7D /* ETAMockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMockUITests.swift; sourceTree = "<group>"; };
-		D5E922EC1E83093000142C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5E922FA1E83115900142C7D /* BusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewController.swift; sourceTree = "<group>"; };
 		D5EB1B321E8405E90064566B /* RouteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,8 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				D5E922C91E83093000142C7D /* ETAMock */,
-				D5E922DE1E83093000142C7D /* ETAMockTests */,
-				D5E922E91E83093000142C7D /* ETAMockUITests */,
 				D5E922C81E83093000142C7D /* Products */,
 				999DC3B1D43D22396BF82B56 /* Pods */,
 				F3F6291BF1500FA41205AE93 /* Frameworks */,
@@ -155,25 +145,6 @@
 				7CEF78201E8B27BC00886A87 /* Route.swift */,
 			);
 			path = ETAMock;
-			sourceTree = "<group>";
-		};
-		D5E922DE1E83093000142C7D /* ETAMockTests */ = {
-			isa = PBXGroup;
-			children = (
-				7CEF781E1E8AF2E700886A87 /* GeneratedMocks.swift */,
-				D5E922DF1E83093000142C7D /* ETAMockTests.swift */,
-				D5E922E11E83093000142C7D /* Info.plist */,
-			);
-			path = ETAMockTests;
-			sourceTree = "<group>";
-		};
-		D5E922E91E83093000142C7D /* ETAMockUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D5E922EA1E83093000142C7D /* ETAMockUITests.swift */,
-				D5E922EC1E83093000142C7D /* Info.plist */,
-			);
-			path = ETAMockUITests;
 			sourceTree = "<group>";
 		};
 		F3F6291BF1500FA41205AE93 /* Frameworks */ = {
@@ -496,8 +467,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5E922E01E83093000142C7D /* ETAMockTests.swift in Sources */,
-				7CEF781F1E8AF2E700886A87 /* GeneratedMocks.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +474,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5E922EB1E83093000142C7D /* ETAMockUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
